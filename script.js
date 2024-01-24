@@ -6,11 +6,16 @@ function test() {
     let temp = [];
     let priority = 0;
     let notPriority = 0;
+    let finalAnsw = 0;
     //remove spaces from the user input
     equation = equation.split(` `);
     equation = equation.join(``);
     equation = equation.split(``);
     //
+    if (equation.includes(`a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`, `l`, `m`, `n`, `o`, `p`, `q`, `r`, `s`, `t`, `u`, `v`, `w`, `y`, `z`, `A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`,
+                             `I`, `J`, `K`, `L`, `M`, `N`, `O`, `P`, `Q`, `R`, `S`, `T`, `U`, `V`, `W`, `Y`, `Z`)) {
+        return `This equation includes a non-supported character`
+    }
     for (let i = 0; i < equation.length; i++) {
         if ((equation[i] != `x`) && (equation[i] != `X`) && (equation[i] != `/`) && (equation[i] != `+`) && (equation[i] != `-`) && (equation[i] != `*`)) {
             temp[temp.length] = equation[i];
@@ -38,51 +43,53 @@ function test() {
             eqFull[eqFull.length] = temp.join(``);
             temp = [];
         }
-        if (i === equation.length-1){
+        if (i === equation.length - 1) {
             eqFull[eqFull.length] = temp.join(``);
             temp = [];
         }
     }
-    for (let i = 0; i < operator.length; i++){
-        if ((operator[i] === `*`) || (operator[i] === `/`)){
+
+    for (let i = 0; i < operator.length; i++) {
+        if ((operator[i] === `*`) || (operator[i] === `/`)) {
             priority++;
-        } else{
+        } else {
             notPriority++;
         }
     }
-    while (priority + notPriority > 0){
-        if (priority > 0){
-            for(let i = 0; i < operator.length; i++){
-                if(operator[i] === `*`){
-                    eqFull[i] = parseInt(eqFull[i]) * parseInt(eqFull[i+1]);
-                    operator.splice(i,1);
-                    eqFull.splice(i+1,1);
+    while (priority + notPriority > 0) {
+        if (priority > 0) {
+            for (let i = 0; i < operator.length; i++) {
+                if (operator[i] === `*`) {
+                    eqFull[i] = parseFloat(eqFull[i]) * parseFloat(eqFull[i + 1]);
+                    operator.splice(i, 1);
+                    eqFull.splice(i + 1, 1);
                     priority--;
                 }
-                else if (operator[i] === `/`){
-                    eqFull[i] = parseInt(eqFull[i]) / parseInt(eqFull[i+1]);
-                    operator.splice(i,1);
-                    eqFull.splice(i+1,1);
+                else if (operator[i] === `/`) {
+                    eqFull[i] = parseFloat(eqFull[i]) / parseFloat(eqFull[i + 1]);
+                    operator.splice(i, 1);
+                    eqFull.splice(i + 1, 1);
                     priority--;
                 }
             }
         }
-        else{
-            for(let i = 0; i < operator.length; i++){
-                if(operator[i] === `+`){
-                    eqFull[i]=parseInt(eqFull[i]) + parseInt(eqFull[i+1]);
-                    operator.splice(i,1);
-                    eqFull.splice(i+1,1);
+        else {
+            for (let i = 0; i < operator.length; i++) {
+                if (operator[i] === `+`) {
+                    eqFull[i] = parseFloat(eqFull[i]) + parseFloat(eqFull[i + 1]);
+                    operator.splice(i, 1);
+                    eqFull.splice(i + 1, 1);
                     notPriority--;
                 }
-                else if (operator[i] === `-`){
-                    eqFull[i] = parseInt(eqFull[i]) - parseInt(eqFull[i+1]);
-                    operator.splice(i,1);
-                    eqFull.splice(i+1,1);
+                else if (operator[i] === `-`) {
+                    eqFull[i] = parseFloat(eqFull[i]) - parseFloat(eqFull[i + 1]);
+                    operator.splice(i, 1);
+                    eqFull.splice(i + 1, 1);
                     notPriority--;
                 }
             }
         }
     }
-    console.log(eqFull);
+    finalAnsw = eqFull[0];
+    return finalAnsw;
 }
