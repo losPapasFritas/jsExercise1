@@ -11,10 +11,17 @@ function test() {
     equation = equation.split(` `);
     equation = equation.join(``);
     equation = equation.split(``);
+    console.log(equation);
     //
-    if (equation.includes(`a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`, `l`, `m`, `n`, `o`, `p`, `q`, `r`, `s`, `t`, `u`, `v`, `w`, `y`, `z`, `A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`,
-                             `I`, `J`, `K`, `L`, `M`, `N`, `O`, `P`, `Q`, `R`, `S`, `T`, `U`, `V`, `W`, `Y`, `Z`)) {
-        return `This equation includes a non-supported character`
+    if (equation.includes(`a`) || equation.includes(`b`) || equation.includes(`c`) || equation.includes(`d`) || equation.includes(`e`) || equation.includes(`f`) || equation.includes(`g`) || equation.includes(`h`)
+         || equation.includes(`j`) || equation.includes(`k`) || equation.includes(`l`) || equation.includes(`m`) || equation.includes(`n`) || equation.includes(`o`) || equation.includes(`q`) ||
+         equation.includes(`r`) || equation.includes(`s`) || equation.includes(`t`) || equation.includes(`u`) || equation.includes(`v`) || equation.includes(`w`) || equation.includes(`y`) || equation.includes(`z`)
+          || equation.includes(`A`) || equation.includes(`B`) || equation.includes(`C`) || equation.includes(`D`) || equation.includes(`E`) || equation.includes(`F`) || equation.includes(`G`) || 
+          equation.includes(`H`) || equation.includes(`J`) || equation.includes(`K`) || equation.includes(`L`) || equation.includes(`M`) || equation.includes(`N`) || equation.includes(`O`) || equation.includes(`Q`)
+           || equation.includes(`R`) || equation.includes(`S`) || equation.includes(`T`) || equation.includes(`U`) || equation.includes(`V`) || equation.includes(`W`) || equation.includes(`Y`)
+           || equation.includes(`Z`)) {
+        console.log(`ur mum`);
+        return `This equation includes a non-supported character`;
     }
     for (let i = 0; i < equation.length; i++) {
         if ((equation[i] != `x`) && (equation[i] != `X`) && (equation[i] != `/`) && (equation[i] != `+`) && (equation[i] != `-`) && (equation[i] != `*`)) {
@@ -48,7 +55,21 @@ function test() {
             temp = [];
         }
     }
-
+    if (eqFull.includes(`pi`)){
+        eqFull[eqFull.indexOf(`pi`)] = Math.PI;
+    }
+    else if (eqFull.includes(`Pi`)){
+        eqFull[eqFull.indexOf(`Pi`)] = Math.PI;
+    }
+    else if (eqFull.includes(`pI`)){
+        eqFull[eqFull.indexOf(`pI`)] = Math.PI;
+    }
+    else if (eqFull.includes(`PI`)){
+        eqFull[eqFull.indexOf(`PI`)] = Math.PI;
+    }
+    else if (equation.includes(`p`) || equation.includes(`i`) || equation.includes(`P`) || equation.includes(`I`)){
+        return `This equation includes a non-supported character`;
+    }
     for (let i = 0; i < operator.length; i++) {
         if ((operator[i] === `*`) || (operator[i] === `/`)) {
             priority++;
@@ -91,5 +112,8 @@ function test() {
         }
     }
     finalAnsw = eqFull[0];
+    if (finalAnsw === 42){
+        finalAnsw = `The answer to life. The Universe. Everything`;
+    }
     return finalAnsw;
 }
