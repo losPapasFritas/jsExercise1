@@ -1,14 +1,14 @@
 function test() {
     //declare variables
-    let equation = document.getElementById("input");
+    let equation = document.getElementById("input"),
+    eqFull = [],
+    operator = [],
+    temp = [],
+    maxPriority = 0,
+    priority = 0,
+    notPriority = 0,
+    finalAnsw = 0;
     equation = input.value
-    let eqFull = [];
-    let operator = [];
-    let temp = [];
-    let maxPriority = 0;
-    let priority = 0;
-    let notPriority = 0;
-    let finalAnsw = 0;
     //remove spaces from the user input
     equation = equation.split(` `);
     equation = equation.join(``);
